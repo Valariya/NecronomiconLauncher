@@ -1,22 +1,33 @@
-﻿using System;
+using System;
 using System.IO;
 
 namespace NecronomiconLauncher
 {
     public static class PathHelper
     {
-        public static string ModulesFolder => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "modules");
+        public static string BaseDirectory => AppDomain.CurrentDomain.BaseDirectory;
+
+        public static string ModulesDirectory => Path.Combine(BaseDirectory, "modules");
 
         public static string GetModulePath(string moduleName)
         {
-            return Path.Combine(ModulesFolder, moduleName + ".grim");
+            return Path.Combine(ModulesDirectory, moduleName + ".grim");
         }
 
-        public static string LogsFolder => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs");
+        public static string LogsDirectory => Path.Combine(BaseDirectory, "logs");
 
         public static string GetLogFile(string moduleName)
         {
-            return Path.Combine(LogsFolder, moduleName + "_log.txt");
+            return Path.Combine(LogsDirectory, moduleName + "_log.txt");
+        }
+
+        public static string TempDirectory => Path.Combine(BaseDirectory, "temp");
+
+        public static void EnsureDirectories()
+        {
+            Directory.CreateDirectory(ModulesDirectory);
+            Directory.CreateDirectory(LogsDirectory);
+            Directory.CreateDirectory(TempDirectory);
         }
     }
 }

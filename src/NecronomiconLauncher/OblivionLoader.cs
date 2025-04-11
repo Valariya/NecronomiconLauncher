@@ -1,34 +1,41 @@
 using System;
 using System.IO;
-using System.IO.Compression;
 using System.Reflection;
 using System.Security.Cryptography;
-using System.Text;
+using System.Windows;
 
 namespace NecronomiconLauncher
 {
     public static class OblivionLoader
     {
-        // AES-GCM ile şifre çözme ve assembly yükleme
-        public static void LoadOblivionModule(string grimPath, byte[] key, byte[] nonce, byte[] tag)
+        public static void LoadOblivionModule(string grimPath, byte[] key, byte[] nonce)
         {
             try
             {
-                byte[] encryptedData = File.ReadAllBytes(grimPath);
+                byte[] encrypted = File.ReadAllBytes(grimPath);
 
-                byte[] decrypted = new byte[encryptedData.Length];
-                using (var aes = new AesGcm(key, 16)) // 16 byte (128 bit) tag uzunluğu
+                byte[] tag = new byte[16];
+                byte[] ciphertext = new byte[encrypted.Length - 16];
+
+                Buffer.BlockCopy(encrypted, 0, ciphertext, 0, ciphertext.Length);
+                Buffer.BlockCopy(encrypted, ciphertext.Length, tag, 0, tag.Length);
+
+                byte[] decrypted = new byte[ciphertext.Length];
+
+                using (var aes = new AesGcm(key))
                 {
-                    aes.Decrypt(nonce, encryptedData, tag, decrypted);
+                    aes.Decrypt(nonce, ciphertext, tag, decrypted);
                 }
 
                 Assembly asm = Assembly.Load(decrypted);
-                MethodInfo entry = asm.EntryPoint;
-                entry?.Invoke(null, new object[] { new string[0] });
+                MethodInfo method = asm.GetType("NocturnedModule.Entry")?.GetMethod("Init");
+
+                method?.Invoke(null, null);
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show($"Oblivion yüklenemedi:\n{ex.Message}", "Hata", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                LogHelper.WriteError("Nocturned", ex.Message);
+                MessageBox.Show("Oblivion yüklenemedi:\n" + ex.Message, "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

@@ -27,17 +27,23 @@ namespace NecronomiconLauncher
 
                 btn.Click += (s, e) =>
                 {
+                    if (!ConfigHelper.IsModuleEnabled(mod))
+                    {
+                        MessageBox.Show("❌ Bu modül devre dışı.", mod, MessageBoxButton.OK, MessageBoxImage.Warning);
+                        LogHelper.Write(mod, "Devre dışı olduğu için başlatılamadı.");
+                        return;
+                    }
+
                     MessageBox.Show($"🧩 Modül başlatılıyor: {mod}", "Modül Aktif", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LogHelper.Write(mod, "Kullanıcı modülü başlattı");
 
                     if (mod == "Nocturned")
                     {
-                        byte[] key = HexToBytes("3e7657df9c417cc88e257fb3078ed130819e726258b005010a2b53f9df6f61b1");
-                        byte[] nonce = HexToBytes("41525edac617bd3b5e926303");
-                        byte[] tag = HexToBytes("75a4dcd6d15abd8d14fd16565f488a8e");
+                        byte[] key = HexToBytes("d46e6a98a2fabcc6ead53b1fd85274b63d69059431e6b663947b5d53ed4e4b14");
+                        byte[] nonce = HexToBytes("4aee5c2bd8f2b0582fcace2c");
 
                         string grimPath = PathHelper.GetModulePath("Nocturned");
-
-                        OblivionLoader.LoadOblivionModule("modules/Nocturned.grim", key, nonce, tag);
+                        OblivionLoader.LoadOblivionModule(grimPath, key, nonce);
                     }
 
                     if (mod == "BypassX")
@@ -50,7 +56,6 @@ namespace NecronomiconLauncher
             }
         }
 
-        // .NET Framework uyumlu Hex to byte[] çevirici
         private byte[] HexToBytes(string hex)
         {
             byte[] bytes = new byte[hex.Length / 2];

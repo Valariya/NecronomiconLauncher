@@ -39,21 +39,25 @@ namespace NecronomiconLauncher
                     ResultBlock.Text = "✔ Giriş başarılı: " + result;
                     ResultBlock.Foreground = System.Windows.Media.Brushes.LightGreen;
 
+                    LogHelper.WriteSystem("Giriş başarılı: Valariya");
+
                     var json = JObject.Parse(result);
                     var modules = json["modules"];
                     new ModuleWindow(modules).Show();
-                    this.Close(); // Giriş ekranını kapat
+                    this.Close();
                 }
                 else
                 {
                     ResultBlock.Text = "❌ Giriş başarısız: " + result;
                     ResultBlock.Foreground = System.Windows.Media.Brushes.OrangeRed;
+                    LogHelper.WriteSystem("Giriş başarısız!");
                 }
             }
             catch (Exception ex)
             {
                 ResultBlock.Text = "⚠ Hata: " + ex.Message;
                 ResultBlock.Foreground = System.Windows.Media.Brushes.Red;
+                LogHelper.WriteError("Launcher", ex.Message);
             }
         }
     }
