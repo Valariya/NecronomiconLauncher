@@ -1,12 +1,10 @@
-# 🕯️ NecronomiconLauncher ☠️
+# 🕯️ NecronomiconLauncher
 
-**NecronomiconLauncher**, sadece yetkilendirilmiş kullanıcıların erişebileceği, AES-GCM ile şifreli modülleri belleğe yükleyen ve HWID/token kontrollü bir sistem başlatıcısıdır. Bu başlatıcı, Unturned için karanlık modüllerin çağrıldığı **Oblivion** sistemine açılan kapıdır.
+NecronomiconLauncher, sadece yetkilendirilmiş kullanıcıların erişebileceği şekilde tasarlanmış, 
+AES-GCM şifreli modül yükleyen, HWID ve token doğrulaması yapan bir Unturned başlatıcısıdır.
 
-## Özellikler
-- 🔐 Şifreli `.grim` uzantılı modül yükleme
-- 🧠 HWID + Token doğrulama sistemi
-- 🧩 Modül seçimi (Oblivion, Gatekeeper)
-- 🧱 Bellekten çözümleme
-- 📡 Uzaktan yükleme desteği
-
-Karanlık modülleri sadece hak edenlere sunan, şifreli bir giriş kapısı. Necronomicon’dan doğan sistem başlatıcısı.
+## Bileşenler
+- MainWindow.xaml: Giriş ekranı (HWID + Token girişi)
+- ModuleWindow.xaml: Modül seçimi (Oblivion, Gatekeeper)
+- LoadOblivionAsync: .grim modül çözümleyici
+- AES-GCM şifreleme sistemi
