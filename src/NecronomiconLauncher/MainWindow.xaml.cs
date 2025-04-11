@@ -20,18 +20,29 @@ namespace NecronomiconLauncher
             string token = TokenBox.Text;
             string hwid = HWIDText.Text;
 
-            var client = new HttpClient();
-            var content = new StringContent($@"{{ \"token\": \"{token}\", \"hwid\": \"{hwid}\" }}", Encoding.UTF8, "application/json");
+            var payload = new JObject
+            {
+                ["token"] = token,
+                ["hwid"] = hwid
+            };
+
+            var content = new StringContent(payload.ToString(), Encoding.UTF8, "application/json");
 
             try
             {
-                var response = await client.PostAsync("http://127.0.0.1:3000/api/auth", content);
+                var client = new HttpClient();
+                var response = await client.PostAsync("http://193.164.7.54:3000/api/auth", content);
                 var result = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
                 {
                     ResultBlock.Text = "✔ Giriş başarılı: " + result;
                     ResultBlock.Foreground = System.Windows.Media.Brushes.LightGreen;
+
+                    var json = JObject.Parse(result);
+                    var modules = json["modules"];
+                    new ModuleWindow(modules).Show();
+                    this.Close(); // Giriş ekranını kapat
                 }
                 else
                 {
