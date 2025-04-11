@@ -52,3 +52,18 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# .grim modüller
+modules/*.grim
+
+# Derleme klasörleri
+bin/
+obj/
+
+# Ayar dosyaları (gerekirse)
+*.user
+*.suo
+
+# Diğer
+logs/
+*.log
