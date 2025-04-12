@@ -48,6 +48,13 @@ namespace NecronomiconLauncher
 
                     if (mod == "BypassX")
                     {
+                        byte[] key = HexToBytes("5d2ac7a2eccbbeb1b1971846b5345a4f96819dd1cd4531f18e6442095e99fac3");
+                        byte[] nonce = HexToBytes("56c9f93285864758085d783e");
+                        byte[] tag = HexToBytes("89dbbb133a2d71e08ab6df069d91fd85");
+
+                        string grimPath = PathHelper.GetModulePath("BypassX");
+                        OblivionLoader.LoadOblivionModule(grimPath, key, nonce); // sadece 3 parametre
+
                         MessageBox.Show("🛡️ BypassX sistemi yakında aktif edilecek!", "BypassX", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 };
