@@ -54,7 +54,30 @@
 7. 🌐 Web Panel (admin arayüz)  
 8. 🔄 .grim güncelleme & modül mağazası  
 9. 📦 Discord/Telegram entegrasyonu  
-10. 💀 Kod Kitabı’nın 2. katı: Geliştirici API  
+10. 💀 Kod Kitabı’nın 2. katı: Geliştirici API
+
+---
+
+## 🛡️ Güvenlik
+
+> **Nocturned modülleri**, doğrudan RAM'e çözülür, diskten DLL olarak erişilemez.  
+> Bu sistem sayesinde kaynak kodlar ve modül içeriği tamamen korunur.  
+> Kullanıcılar sadece izin verilen modülleri, sınırlı sürelerde kullanabilir.
+> 
+---
+
+## ⚙️ Mimarinin Temel Bileşenleri
+
+| Katman            | Açıklama |
+|-------------------|----------|
+| **Launcher UI**   | WPF ile geliştirilen kullanıcı arayüzü |
+| **Modül Sistemi** | Şifrelenmiş `.grim` dosyaları (DLL tabanlı) |
+| **Auth API**      | Node.js ile çalışan lisans kontrol sistemi |
+| **Oblivion Loader** | DLL yükleyici / decrypt mekanizması |
+| **LogHelper**     | Uygulama içi gelişmiş log sistemi |
+| **PathHelper**    | Ortamdan bağımsız modül yolu yönetimi |
+| **LangHelper** *(planlandı)* | Çok dilli dil yönetim sistemi |
+| **BypassX** *(beta)* | Özel modüller için altyapı |
 
 ---
 
