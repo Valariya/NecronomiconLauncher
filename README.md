@@ -43,6 +43,14 @@
 
 ---
 
+## 🛡️ Güvenlik
+
+> **Nocturned modülleri**, doğrudan RAM'e çözülür, diskten DLL olarak erişilemez.  
+> Bu sistem sayesinde kaynak kodlar ve modül içeriği tamamen korunur.  
+> Kullanıcılar sadece izin verilen modülleri, sınırlı sürelerde kullanabilir.
+
+---
+
 ## 🕰️ Yol Haritası
 
 1. ✅ HWID + Token ile giriş  
@@ -56,14 +64,6 @@
 9. 📦 Discord/Telegram entegrasyonu  
 10. 💀 Kod Kitabı’nın 2. katı: Geliştirici API
 
----
-
-## 🛡️ Güvenlik
-
-> **Nocturned modülleri**, doğrudan RAM'e çözülür, diskten DLL olarak erişilemez.  
-> Bu sistem sayesinde kaynak kodlar ve modül içeriği tamamen korunur.  
-> Kullanıcılar sadece izin verilen modülleri, sınırlı sürelerde kullanabilir.
-> 
 ---
 
 ## ⚙️ Mimarinin Temel Bileşenleri
@@ -115,15 +115,3 @@ Proje şu an private olarak geliştirilmektedir.
 Katkıda bulunmak istersen, lütfen bizimle iletişime geçin.  
 Yeni modül talepleri, özelleştirme istekleri ve daha fazlası için:  
 📧 `valariya@necroclient.dev`
-
----
-
-### ✅ Yapılacak Son Adımlar
-
-1. `images/nocturned.png` dosyasını GitHub repoya yükle (`images` klasörü oluştur).
-2. Bu `README.md` içeriğini ana dizine yerleştir.
-3. Commit mesajın şu şekilde olabilir:
-
-```bash
-summary: 📘 README.md güncellendi
-message: Özellikler, mimari, farklılıklar ve kurumsal kimlik içeriği eklendi.
