@@ -81,6 +81,21 @@
 
 ---
 
+## 📂 Proje Yapısı
+
+```bash
+📁 modules/         # Şifreli modül dosyaları (.grim)
+📁 src/             # Tüm kaynak kodlar
+├── NecronomiconLauncher/
+│   ├── MainWindow.xaml        # Giriş arayüzü
+│   ├── ModuleWindow.xaml      # Modül ekranı
+│   ├── Helpers/               # Yardımcı sınıflar (LogHelper, ConfigHelper vs)
+│   ├── OblivionLoader.cs      # Şifre çözücü + modül çalıştırıcı
+│   └── App.xaml               # Uygulama başlangıç ayarları
+```
+
+---
+
 ## 📸 Ekran Görüntüleri
 
 > 💻 Görseller yakında eklenecek...
